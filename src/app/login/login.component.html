@@ -1,0 +1,33 @@
+<div class="panel-body">
+  <form (ngSubmit)="login()" [formGroup]="loginForm" class="form-horizontal">
+    <fieldset class="Credentails">
+      <div class="form-group" [ngClass]="{'has-error':userErrorMessage}">
+        <label class="col-md-2 control-label" for="username">Username</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" placeholder="Enter username " formControlName="username" id="username">
+          <span class="help-block" *ngIf="userErrorMessage">
+              {{userErrorMessage}}
+            </span>
+        </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':passErrorMessage}">
+        <label for="password" class="col-md-2 control-label">Password</label>
+        <div class="col-md-8">
+          <input type="password" class="form-control" id="password" placeholder="password" formControlName="password">
+          <span class="help-block" *ngIf="passErrorMessage">
+            {{passErrorMessage}}
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2">
+          <span>
+            <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">
+              Login
+            </button>
+          </span>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
