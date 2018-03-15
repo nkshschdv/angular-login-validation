@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9-]+')]],
+      username: ['', [Validators.required, Validators.pattern('^(?![_-]).[A-Za-z0-9_-]((?!_-|-_).)(?<![-_]){3,9}$')]],
       password: ['', [Validators.required]]
     });
     const usernameControl = this.loginForm.get('username');
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
   setUserErrorMessage(c: AbstractControl): void {
     this.userErrorMessage = '';
-    if ((c.touched || c.dirty) && (c.errors || c.valid)) {
+    if ((c.touched || c.dirty) && (c.errors)) {
       this.userErrorMessage = Object.keys(c.errors).map( key =>
       this.usernameValidationMessages[key]).join(' ');
     }
